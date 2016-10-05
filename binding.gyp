@@ -30,7 +30,7 @@
           "oci_rpath%"   : "<!(if [ -z $OCI_LIB_DIR ]; then OCI_LIB_DIR=`ls -d /usr/lib/oracle/*/client*/lib/libclntsh.* 2> /dev/null | tail -1 | sed -e 's#/libclntsh[^/]*##'`; if [ -z $OCI_LIB_DIR ]; then if [ -d \"$ORACLE_HOME\" ]; then if [ -z \"${FORCE_RPATH+x}\" ]; then echo \"\"; else echo \"-Wl,-rpath,$ORACLE_HOME/lib\"; fi; else if [ -z \"${FORCE_RPATH+x}\" ]; then echo \"\"; else echo \"-Wl,-rpath,/opt/oracle/instantclient\"; fi; fi; else echo \"-Wl,-rpath,$OCI_LIB_DIR\"; fi; else if [ -z \"${FORCE_RPATH+x}\" ]; then echo \"\"; else echo \"-Wl,-rpath,$OCI_LIB_DIR\"; fi; fi;)",
         },
         "cflags"        : ['-fexceptions'],
-        "cflags_cc"     : ['-fexceptions'],
+        "cflags_cc"     : ['-fexceptions', '-std=c++0x'],
         "libraries"     : ["-lclntsh"],
         "link_settings" : {
            "libraries"  : ['-L<(oci_lib_dir) <(oci_rpath)']
